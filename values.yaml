@@ -1,9 +1,9 @@
 
 replicaCount: 1
 image:
-  repository: durgarao418/spring-app
+  repository: durgarao418/eks-app
   pullPolicy: IfNotPresent
-  tag: "v8"
+  tag: "0.0.1-SNAPSHOT"
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
