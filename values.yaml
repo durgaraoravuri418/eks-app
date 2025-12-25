@@ -66,3 +66,6 @@ volumeMounts: []
 nodeSelector: {}
 tolerations: []
 affinity: {}
+envFrom:
+  - configMapRef:
+      name: app-config
