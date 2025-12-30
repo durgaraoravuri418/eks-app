@@ -1,25 +1,31 @@
-
 replicaCount: 1
+
 image:
   repository: durgarao418/eks-app
   pullPolicy: IfNotPresent
   tag: "0.0.1-SNAPSHOT"
+
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
+
 serviceAccount:
   create: true
   automount: true
   annotations: {}
   name: ""
+
 podAnnotations: {}
 podLabels: {}
+
 podSecurityContext: {}
 securityContext: {}
+
 service:
   type: LoadBalancer
   port: 80
   targetPort: 8080
+
 ingress:
   enabled: false
   className: ""
@@ -30,42 +36,57 @@ ingress:
         - path: /
           pathType: ImplementationSpecific
   tls: []
+
 httpRoute:
   enabled: false
   annotations: {}
   parentRefs:
-  - name: gateway
-    sectionName: http
+    - name: gateway
+      sectionName: http
   hostnames:
-  - chart-example.local
+    - chart-example.local
   rules:
-  - matches:
-    - path:
-        type: PathPrefix
-        value: /headers
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /headers
+
 resources: {}
+
 livenessProbe:
   httpGet:
     path: /
     port: 8080
-    initialDelaySeconds: 20
-    periodSeconds: 10
+  initialDelaySeconds: 20
+  periodSeconds: 10
+
 readinessProbe:
   httpGet:
     path: /
     port: 8080
-    initialDelaySeconds: 20
-    periodSeconds: 10
+  initialDelaySeconds: 20
+  periodSeconds: 10
+
+startupProbe:
+  httpGet:
+    path: /
+    port: 8080
+  failureThreshold: 30
+  periodSeconds: 2
+
 autoscaling:
   enabled: false
   minReplicas: 1
   maxReplicas: 100
-  targetCPUUtilizationPercentage: 80 
+  targetCPUUtilizationPercentage: 80
+
 volumes: []
 volumeMounts: []
+
 nodeSelector: {}
 tolerations: []
 affinity: {}
+
 envFrom:
   - configMapRef:
       name: app-config
