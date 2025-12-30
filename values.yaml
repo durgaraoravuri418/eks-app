@@ -55,26 +55,10 @@ httpRoute:
 
 resources: {}
 
-livenessProbe:
-  httpGet:
-    path: /
-    port: 8080
-  initialDelaySeconds: 20
-  periodSeconds: 10
+livenessProbe: null
+readinessProbe: null
 
-readinessProbe:
-  httpGet:
-    path: /
-    port: 8080
-  initialDelaySeconds: 20
-  periodSeconds: 10
-
-startupProbe:
-  httpGet:
-    path: /
-    port: 8080
-  failureThreshold: 30
-  periodSeconds: 2
+startupProbe: null
 
 autoscaling:
   enabled: false
