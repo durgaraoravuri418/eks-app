@@ -23,8 +23,10 @@ securityContext: {}
 
 service:
   type: LoadBalancer
-  port: 80
-  targetPort: 8080
+  port: 80           # external port
+  targetPort: 8080   # app port
+
+containerPort: 8080  # <-- 🔹 add this so Deployment uses 8080
 
 ingress:
   enabled: false
